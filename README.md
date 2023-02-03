@@ -12,11 +12,11 @@ The following libraries are required to run this app:
 
 1. Clone the repository:
 
-```git clone https://github.com/[YOUR-USERNAME]/[YOUR-PROJECT].git```
+```git clone https://github.com/nishantgerald/eda-tool.git```
 
 2. Change into the project directory:
     
-    ```cd [YOUR-PROJECT]```
+    ```cd eda-tool```
 
 3. Install the requirements:
 
