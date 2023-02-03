@@ -6,14 +6,14 @@ import metadata as mdata
 # Set page configuration
 st.set_page_config(page_title=None, page_icon=None, layout="wide", initial_sidebar_state="auto")
 
-# Set footer to not display
-st.markdown("""
-<style>
-footer {
-display: none;
-}
-</style>
-""", unsafe_allow_html=True)
+# CSS
+def local_css(file_name):
+    '''
+    Load local CSS file into Streamlit.
+    '''
+    with open(file_name) as f:
+        st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
+local_css("resources/style.css")
 
 # Select option from the menu in the sidebar
 menu = ["Upload", "Metadata"]
@@ -37,7 +37,6 @@ def main():
 
     if choice == "Metadata":
         # Show metadata page
-        st.title("Metadata")
         if data is None:
             st.write("No data loaded.")
             return
