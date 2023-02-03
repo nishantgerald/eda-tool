@@ -10,13 +10,15 @@ def get_line_plot(data):
     Input: data (Pandas dataframe): data to display line plot for
     Output: None
     '''
-    st.subheader("Line Plot")
-    x_axis_col = st.selectbox("Select X-axis column", data.columns)
-    y_axis_col = st.selectbox("Select Y-axis column", data.columns)
-    if x_axis_col and y_axis_col:
-        x = data[x_axis_col]
-        y = data[y_axis_col]
-        st.line_chart(data=data, x=x_axis_col, y=y_axis_col)
+    show_line_plot = st.checkbox("Show line plot", value=False)
+    if show_line_plot:
+        st.subheader("Line Plot")
+        x_axis_col = st.selectbox("Select X-axis column", data.columns)
+        y_axis_col = st.selectbox("Select Y-axis column", data.columns)
+        if x_axis_col and y_axis_col:
+            x = data[x_axis_col]
+            y = data[y_axis_col]
+            st.line_chart(data=data, x=x_axis_col, y=y_axis_col)
 
 def show_histogram(data):
     '''
@@ -25,10 +27,10 @@ def show_histogram(data):
     Input: data (Pandas dataframe): data to display histogram for
     Output: None
     '''
-    st.subheader("Histogram")
-    column = st.selectbox("Select column", data.columns)
-    # Set bin spacing
-    nbins = st.slider("Number of bins", min_value=1, max_value=100, value=10)
-    if column:
-        fig = px.histogram(data, x=column, title="Histogram", nbins=None)
-        st.plotly_chart(fig)
+    show_histogram = st.checkbox("Show histogram", value=False)
+    if show_histogram:
+        st.subheader("Histogram")
+        column = st.selectbox("Select column", data.columns)
+        if column:
+            fig = px.histogram(data, x=column, title="Histogram", nbins=None)
+            st.plotly_chart(fig)
