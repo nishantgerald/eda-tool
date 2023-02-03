@@ -1,0 +1,4 @@
+/* Set footer to not display */
+footer {
+    display: none;
+} 
