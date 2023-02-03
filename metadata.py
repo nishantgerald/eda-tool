@@ -14,7 +14,7 @@ def show_metadata(data):
         return
 
     # Place number of rows metric and number of columns metric side by side
-    col1, col2 = st.columns(2)
+    col1, col2, col3, col4 = st.columns(4)
     
     # Show number of rows in col1 and number of columns in col2
     with col1:
