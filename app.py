@@ -1,8 +1,7 @@
 import streamlit as st
-import pandas as pd
-import matplotlib.pyplot as plt
-import io
-import urllib, base64
+from file_upload import upload_file
+import metadata as mdata
+
 
 # Set page configuration
 st.set_page_config(page_title=None, page_icon=None, layout="wide", initial_sidebar_state="auto")
@@ -21,24 +20,7 @@ menu = ["Upload", "Metadata"]
 choice = st.sidebar.selectbox("Select an option", menu)
 
 # Upload file and read it into a Pandas dataframe
-uploaded_file = st.file_uploader("Choose a CSV file", type=["csv", "tsv", "json", "xlsx", "xml"], key='file')
-data = None
-if uploaded_file is not None:
-    file_extension = uploaded_file.name.split(".")[-1].lower()
-    if file_extension == "csv":
-        data = pd.read_csv(uploaded_file)
-    elif file_extension == "tsv":
-        data = pd.read_csv(uploaded_file, sep="\t")
-    elif file_extension == "json":
-        data = pd.read_json(uploaded_file)
-    elif file_extension == "xlsx":
-        data = pd.read_excel(uploaded_file)
-    elif file_extension == "xml":
-        # You will need to install the 'xmltodict' library to read XML files
-        import xmltodict
-        with uploaded_file as file:
-            data = pd.DataFrame.from_dict(xmltodict.parse(file.read()))
-
+data = upload_file()
 
 def main():
     if choice == "Upload":
@@ -59,26 +41,7 @@ def main():
         if data is None:
             st.write("No data loaded.")
             return
-        # Show number of rows
-        st.write("Number of rows:", data.shape[0])
-        # Show number of columns
-        st.write("Number of columns:", data.shape[1])
-        # Show summary statistics
-        st.write("Summary statistics:")
-        st.write(data.describe())
-        # Show missing values count
-        st.write("Missing values count:")
-        st.write(data.isna().sum())
-        # Show unique values count
-        st.write("Unique values count:")
-        unique_values_count = {col: len(data[col].unique()) for col in data.columns}
-        st.dataframe(pd.DataFrame(list(unique_values_count.items()), columns=["Column", "Unique Count"]))
-        # Show most frequent values
-        st.write("Most frequent values:")
-        most_frequent_values = {col: data[col].value_counts().head(1).reset_index().rename(columns={'index':'value', col:'count'}) for col in data.columns}
-        most_frequent_values_df = pd.concat(most_frequent_values.values(), keys=most_frequent_values.keys(), axis=1)
-        st.dataframe(most_frequent_values_df.T)
-
+        mdata.show_metadata(data)
 
 if __name__ == "__main__":
     main()
