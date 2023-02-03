@@ -57,12 +57,13 @@ def main():
         st.write(data.isna().sum())
         # Show unique values count
         st.write("Unique values count:")
-        unique_values_count = [len(data[col].unique()) for col in data.columns]
-        st.write(unique_values_count)
+        unique_values_count = {col: len(data[col].unique()) for col in data.columns}
+        st.dataframe(pd.DataFrame(list(unique_values_count.items()), columns=["Column", "Unique Count"]))
         # Show most frequent values
         st.write("Most frequent values:")
-        most_frequent_values = [data[col].value_counts().head(5) for col in data.columns]
-        st.write(most_frequent_values)
+        most_frequent_values = {col: data[col].value_counts().head(1).reset_index().rename(columns={'index':'value', col:'count'}) for col in data.columns}
+        most_frequent_values_df = pd.concat(most_frequent_values.values(), keys=most_frequent_values.keys(), axis=1)
+        st.dataframe(most_frequent_values_df.T)
 
 
 if __name__ == "__main__":
