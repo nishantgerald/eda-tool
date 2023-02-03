@@ -1,7 +1,7 @@
 import streamlit as st
 from file_upload import upload_file
 import metadata as mdata
-
+import visualize
 
 # Set page configuration
 st.set_page_config(page_title=None, page_icon=None, layout="wide", initial_sidebar_state="auto")
@@ -16,7 +16,7 @@ def local_css(file_name):
 local_css("resources/style.css")
 
 # Select option from the menu in the sidebar
-menu = ["Upload", "Metadata"]
+menu = ["Upload", "Metadata", "Visualize"]
 choice = st.sidebar.selectbox("Select an option", menu)
 
 # Upload file and read it into a Pandas dataframe
@@ -41,6 +41,15 @@ def main():
             st.write("No data loaded.")
             return
         mdata.show_metadata(data)
+
+    if choice == "Visualize":
+        # Show visualization page
+        if data is None:
+            st.write("No data loaded.")
+            return
+        st.title("Visualize Data")
+        visualize.get_line_plot(data)
+        visualize.show_histogram(data)
 
 if __name__ == "__main__":
     main()
