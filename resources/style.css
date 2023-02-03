@@ -2,3 +2,13 @@
 footer {
     display: none;
 } 
+
+/* Metric Colors for Dark Mode */
+.css-ffhzg2 {
+    color: rgb(37, 137, 208);
+}
+
+/* Metric Colors for Light Mode */
+.css-fg4pbf {
+    color: rgb(37, 137, 208);
+}
