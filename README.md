@@ -34,7 +34,7 @@ The following libraries are required to run this app:
 
 <img src="resources/upload.png" width="750" title="Upload File">
 
-<figcaption align="center"><b>Upload File</b></figcaption>
+<div align="center"><figcaption align="center"><b>Upload File</b></figcaption></div>
 
 
 <br>
