@@ -53,7 +53,7 @@ The following libraries are required to run this app:
 
 ## Contributiions
 
-This app is open source and contributions are welcome. If you would like to contribute, please follow these steps:
+This app is open source and contributions are welcome. If you would like to contribute, please send in a pull request.
 
 ## License
 This project is licensed under the `MIT license`.
