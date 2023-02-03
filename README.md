@@ -7,6 +7,9 @@ The following libraries are required to run this app:
 * Streamlit
 * Pandas
 * Xmltodict (if uploading XML files)
+* Matplotlib
+* Plotly
+
 
 ## Usage
 
