@@ -2,6 +2,12 @@ import streamlit as st
 import pandas as pd
 
 def show_metadata(data):
+    '''
+    This function displays the metadata of the data.
+
+    Input: data (Pandas dataframe): data to display metadata for
+    Output: None
+    '''
     st.title("Metadata")
     if data is None:
         st.write("No data loaded.")

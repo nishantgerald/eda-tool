@@ -10,6 +10,9 @@ st.set_page_config(page_title=None, page_icon=None, layout="wide", initial_sideb
 def local_css(file_name):
     '''
     Load local CSS file into Streamlit.
+
+    Input: file_name (str): name of the CSS file
+    Output: None
     '''
     with open(file_name) as f:
         st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
@@ -23,6 +26,13 @@ choice = st.sidebar.selectbox("Select an option", menu)
 data = upload_file()
 
 def main():
+    '''
+   This function is the main function of the app.
+   It displays the selected page and calls the appropriate functions.
+
+    Input: None
+    Output: None
+    '''
     if choice == "Upload":
         # Show data upload & view page
         st.title("Upload & View Data")

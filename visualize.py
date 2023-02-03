@@ -4,6 +4,12 @@ import matplotlib.pyplot as plt
 import plotly.express as px
 
 def get_line_plot(data):
+    '''
+    This function displays a line plot.
+
+    Input: data (Pandas dataframe): data to display line plot for
+    Output: None
+    '''
     st.subheader("Line Plot")
     x_axis_col = st.selectbox("Select X-axis column", data.columns)
     y_axis_col = st.selectbox("Select Y-axis column", data.columns)
@@ -13,6 +19,12 @@ def get_line_plot(data):
         st.line_chart(data=data, x=x_axis_col, y=y_axis_col)
 
 def show_histogram(data):
+    '''
+    This function displays a histogram.
+
+    Input: data (Pandas dataframe): data to display histogram for
+    Output: None
+    '''
     st.subheader("Histogram")
     column = st.selectbox("Select column", data.columns)
     # Set bin spacing

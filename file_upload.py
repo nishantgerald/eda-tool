@@ -2,6 +2,12 @@ import pandas as pd
 import streamlit as st
 
 def upload_file():
+    '''
+    This function uploads a file and reads it into a Pandas dataframe.
+
+    Input: None
+    Output: data (Pandas dataframe): data read from the uploaded file
+    '''
     uploaded_file = st.file_uploader("Choose a CSV file", type=["csv", "tsv", "json", "xlsx", "xml"], key='file')
     data = None
     if uploaded_file is not None:
