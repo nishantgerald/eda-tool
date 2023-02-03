@@ -18,5 +18,5 @@ def show_histogram(data):
     # Set bin spacing
     nbins = st.slider("Number of bins", min_value=1, max_value=100, value=10)
     if column:
-        fig = px.histogram(data, x=column, title="Histogram", nbins=nbins)
+        fig = px.histogram(data, x=column, title="Histogram", nbins=None)
         st.plotly_chart(fig)
